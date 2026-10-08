@@ -2043,6 +2043,60 @@ body:not(.wide) main:not(:has(#quiz:not(.hidden))) {
     padding-bottom: 12px;
   }
 }
+
+/* ===== LAYOUT PENGERJAAN SOAL (HP) ===== */
+@media (max-width: 560px) {
+
+  /* hapus info ganda, hemat tinggi */
+  .qcard .qn { display: none; }
+
+  /* bar info lebih ringkas */
+  .top {
+    padding: 8px 12px;
+    font-size: .74rem;
+    margin-bottom: 8px;
+  }
+  .bar { margin-bottom: 10px; }
+
+  /* kartu soal lebih rapat */
+  .qcard { padding: 14px 12px; }
+  .qt { margin-bottom: 10px; line-height: 1.45; }
+
+  /* pilihan: area sentuh nyaman, jarak rapat */
+  .opt {
+    min-height: 44px;
+    margin-bottom: 8px;
+    align-items: center;
+  }
+  .opt > span:last-child { padding-top: 0; }
+
+  /* tombol navigasi menempel di bawah layar */
+  .nav {
+    position: sticky;
+    bottom: 0;
+    z-index: 5;
+    margin: 10px -12px 0;
+    padding: 10px 12px;
+    background: linear-gradient(to top, var(--bg) 75%, transparent);
+  }
+
+  /* bola dekorasi dimatikan saat mengerjakan */
+  body:not(.wide):has(#quiz:not(.hidden))::before,
+  body:not(.wide):has(#quiz:not(.hidden))::after {
+    display: none;
+  }
+}
+
+/* ===== PENYEMPURNAAN HP ===== */
+@media (max-width: 560px) {
+  .nav { padding-bottom: calc(10px + env(safe-area-inset-bottom)); }
+  .top { position: sticky; top: env(safe-area-inset-top); z-index: 6; }
+}
+
+@media (hover: none) {
+  .opt:hover,
+  .tcard.open:hover { transform: none; }
+}
 </style>
 </head>
 
