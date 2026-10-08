@@ -2097,6 +2097,314 @@ body:not(.wide) main:not(:has(#quiz:not(.hidden))) {
   .opt:hover,
   .tcard.open:hover { transform: none; }
 }
+
+/* ===== POLES CLAYMORPHISM (warna tidak diubah) ===== */
+:root {
+  /* sudut lebih bulat */
+  --r-s: 18px;
+  --r-m: 26px;
+  --r-l: 36px;
+
+  /* gerakan memantul */
+  --spring: cubic-bezier(.34, 1.56, .64, 1);
+
+  /* kilap lembut: cahaya dari kiri atas (hanya terang/gelap, bukan warna baru) */
+  --gloss: linear-gradient(150deg,
+    rgba(255, 255, 255, .32) 0%,
+    rgba(255, 255, 255, 0) 52%,
+    rgba(95, 75, 155, .06) 100%);
+
+  /* bayangan lebih dalam dan lebar */
+  --raise:
+    0 18px 32px -6px rgba(95, 75, 155, .32),
+    0 6px 12px rgba(95, 75, 155, .14),
+    inset 0 5px 0 rgba(255, 255, 255, .6),
+    inset 0 -10px 16px rgba(95, 75, 155, .18);
+  --raise-s:
+    0 10px 18px -4px rgba(95, 75, 155, .3),
+    0 3px 6px rgba(95, 75, 155, .12),
+    inset 0 3px 0 rgba(255, 255, 255, .6),
+    inset 0 -6px 10px rgba(95, 75, 155, .16);
+}
+
+html { scroll-behavior: smooth; }
+* { -webkit-tap-highlight-color: transparent; }
+::selection { background: rgba(238, 125, 104, .3); }
+
+/* ---- kilap pada semua benda clay ---- */
+.panel, .tcard, .qcard, .note, .stat, .top, .opt, .lock,
+.izin, .selbar, .pd .pb, .opt .l, .tcard .ti {
+  background-image: var(--gloss);
+}
+button:not(:disabled):not(.tab):not(.sw) {
+  background-image: var(--gloss);
+}
+
+/* judul timbul */
+h1 { text-shadow: 0 2px 0 rgba(255, 255, 255, .6); }
+
+/* ---- interaksi memantul ---- */
+button, .opt, .tcard {
+  transition: transform .3s var(--spring), box-shadow .25s ease, filter .2s ease;
+}
+button:hover:not(:disabled) { transform: translateY(-3px) scale(1.02); }
+button:active:not(:disabled) { transform: translateY(1px) scale(.97); }
+.opt:active { transform: scale(.98); }
+
+.opt.sel { animation: pop .35s var(--spring); }
+@keyframes pop {
+  0%   { transform: scale(.96); }
+  60%  { transform: scale(1.025); }
+  100% { transform: none; }
+}
+
+/* ---- melayang pelan: bola dekorasi dan ikon gembok ---- */
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-9px); }
+}
+body::before          { animation: floaty 7s ease-in-out infinite; }
+body::after           { animation: floaty 9s ease-in-out -3s infinite; }
+.hero::before         { animation: floaty 5s ease-in-out infinite; }
+.hero::after          { animation: floaty 6s ease-in-out -2s infinite; }
+body:not(.wide) .lock { animation: floaty 6s ease-in-out infinite; }
+
+/* ---- muncul halus saat halaman dibuka ---- */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px) scale(.97); }
+  to   { opacity: 1; transform: none; }
+}
+body:not(.wide) .hero { animation: rise .6s var(--spring) both; }
+body:not(.wide) #idCard { animation: rise .6s var(--spring) .12s both; }
+
+/* ---- progress bar berkilau ---- */
+.bar i {
+  background-image: linear-gradient(90deg, transparent, rgba(255, 255, 255, .4), transparent);
+  background-size: 200% 100%;
+  animation: shine 2.2s linear infinite;
+}
+@keyframes shine {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
+
+/* ---- timer berdenyut saat waktu hampir habis ---- */
+.tm.low { animation: beat 1s ease-in-out infinite; }
+@keyframes beat {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.12); }
+}
+
+/* ---- layar selesai: lencana centang timbul ---- */
+.result h2::before {
+  content: "✓";
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 800;
+  background-color: var(--ok);
+  background-image: var(--gloss);
+  box-shadow: var(--raise-s), 0 10px 20px rgba(67, 181, 133, .3);
+  animation: pop .6s var(--spring) both;
+}
+
+/* ---- scrollbar halus (tabel admin) ---- */
+.scroll::-webkit-scrollbar { height: 10px; width: 10px; }
+.scroll::-webkit-scrollbar-thumb {
+  border-radius: 99px;
+  background: rgba(95, 75, 155, .35);
+}
+
+/* ---- layar sentuh: matikan efek hover yang bisa "nyangkut" ---- */
+@media (hover: none) {
+  button:hover:not(:disabled),
+  .opt:hover,
+  .tcard.open:hover { transform: none; }
+}
+
+/* ===== POLES CLAYMORPHISM (warna tidak diubah) ===== */
+:root {
+  /* sudut lebih bulat */
+  --r-s: 18px;
+  --r-m: 26px;
+  --r-l: 36px;
+
+  /* gerakan memantul */
+  --spring: cubic-bezier(.34, 1.56, .64, 1);
+
+  /* kilap lembut: cahaya dari kiri atas (hanya terang/gelap, bukan warna baru) */
+  --gloss: linear-gradient(150deg,
+    rgba(255, 255, 255, .32) 0%,
+    rgba(255, 255, 255, 0) 52%,
+    rgba(95, 75, 155, .06) 100%);
+
+  /* bayangan lebih dalam dan lebar */
+  --raise:
+    0 18px 32px -6px rgba(95, 75, 155, .32),
+    0 6px 12px rgba(95, 75, 155, .14),
+    inset 0 5px 0 rgba(255, 255, 255, .6),
+    inset 0 -10px 16px rgba(95, 75, 155, .18);
+  --raise-s:
+    0 10px 18px -4px rgba(95, 75, 155, .3),
+    0 3px 6px rgba(95, 75, 155, .12),
+    inset 0 3px 0 rgba(255, 255, 255, .6),
+    inset 0 -6px 10px rgba(95, 75, 155, .16);
+}
+
+html { scroll-behavior: smooth; }
+* { -webkit-tap-highlight-color: transparent; }
+::selection { background: rgba(238, 125, 104, .3); }
+
+/* ---- kilap pada semua benda clay ---- */
+.panel, .tcard, .qcard, .note, .stat, .top, .opt, .lock,
+.izin, .selbar, .pd .pb, .opt .l, .tcard .ti {
+  background-image: var(--gloss);
+}
+button:not(:disabled):not(.tab):not(.sw) {
+  background-image: var(--gloss);
+}
+
+/* judul timbul */
+h1 { text-shadow: 0 2px 0 rgba(255, 255, 255, .6); }
+
+/* ---- interaksi memantul ---- */
+button, .opt, .tcard {
+  transition: transform .3s var(--spring), box-shadow .25s ease, filter .2s ease;
+}
+button:hover:not(:disabled) { transform: translateY(-3px) scale(1.02); }
+button:active:not(:disabled) { transform: translateY(1px) scale(.97); }
+.opt:active { transform: scale(.98); }
+
+.opt.sel { animation: pop .35s var(--spring); }
+@keyframes pop {
+  0%   { transform: scale(.96); }
+  60%  { transform: scale(1.025); }
+  100% { transform: none; }
+}
+
+/* ---- melayang pelan: bola dekorasi dan ikon gembok ---- */
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-9px); }
+}
+body::before          { animation: floaty 7s ease-in-out infinite; }
+body::after           { animation: floaty 9s ease-in-out -3s infinite; }
+.hero::before         { animation: floaty 5s ease-in-out infinite; }
+.hero::after          { animation: floaty 6s ease-in-out -2s infinite; }
+body:not(.wide) .lock { animation: floaty 6s ease-in-out infinite; }
+
+/* ---- muncul halus saat halaman dibuka ---- */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px) scale(.97); }
+  to   { opacity: 1; transform: none; }
+}
+body:not(.wide) .hero { animation: rise .6s var(--spring) both; }
+body:not(.wide) #idCard { animation: rise .6s var(--spring) .12s both; }
+
+/* ---- progress bar berkilau ---- */
+.bar i {
+  background-image: linear-gradient(90deg, transparent, rgba(255, 255, 255, .4), transparent);
+  background-size: 200% 100%;
+  animation: shine 2.2s linear infinite;
+}
+@keyframes shine {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
+
+/* ---- timer berdenyut saat waktu hampir habis ---- */
+.tm.low { animation: beat 1s ease-in-out infinite; }
+@keyframes beat {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.12); }
+}
+
+/* ---- layar selesai: lencana centang timbul ---- */
+.result h2::before {
+  content: "✓";
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 800;
+  background-color: var(--ok);
+  background-image: var(--gloss);
+  box-shadow: var(--raise-s), 0 10px 20px rgba(67, 181, 133, .3);
+  animation: pop .6s var(--spring) both;
+}
+
+/* ---- scrollbar halus (tabel admin) ---- */
+.scroll::-webkit-scrollbar { height: 10px; width: 10px; }
+.scroll::-webkit-scrollbar-thumb {
+  border-radius: 99px;
+  background: rgba(95, 75, 155, .35);
+}
+
+/* ---- layar sentuh: matikan efek hover yang bisa "nyangkut" ---- */
+@media (hover: none) {
+  button:hover:not(:disabled),
+  .opt:hover,
+  .tcard.open:hover { transform: none; }
+}
+
+/* ===== PATCH KILAP + POLES PANEL ADMIN (warna tidak diubah) ===== */
+
+/* kilap yang sebelumnya tertimpa aturan lama */
+.note.ok, .note.bad, .note.wait,
+.tcard.open .ti, .tcard.post.open .ti,
+.tabs, .tab.on, .tab.on:hover:not(:disabled),
+.badge, th, select {
+  background-image: var(--gloss);
+}
+
+/* ---- admin: menu samping/tab ---- */
+.tab {
+  transition: background-color .25s ease, color .25s ease,
+              transform .3s var(--spring), box-shadow .25s ease;
+}
+@media (min-width: 900px) and (hover: hover) {
+  .tab:hover:not(:disabled):not(.on) { transform: translateX(5px); }
+}
+
+/* ---- admin: kartu statistik terangkat saat kursor di atasnya ---- */
+@media (hover: hover) {
+  .stat { transition: transform .3s var(--spring), box-shadow .3s ease; }
+  .stat:hover { transform: translateY(-4px); }
+}
+
+/* ---- admin: tabel lebih lembut ---- */
+th:first-child { border-top-left-radius: 14px; }
+th:last-child  { border-top-right-radius: 14px; }
+tr.rw td { transition: background-color .2s ease; }
+
+/* ---- admin: podium ---- */
+.pd .pb { text-shadow: 0 2px 0 rgba(0, 0, 0, .12); }
+.pd .pn { text-shadow: 0 1px 0 rgba(255, 255, 255, .6); }
+
+/* ---- admin: panel muncul berurutan saat pindah tab ---- */
+.pane.on > .panel,
+.pane.on .dash > *,
+.pane.on .charts > *,
+.pane.on .cols > * {
+  animation: rise .5s var(--spring) both;
+}
+.pane.on .dash > :nth-child(2),
+.pane.on .charts > :nth-child(2),
+.pane.on .cols > :nth-child(2) {
+  animation-delay: .08s;
+}
+
+/* ---- admin: form login muncul halus ---- */
+#adm > .panel { animation: rise .6s var(--spring) both; }
 </style>
 </head>
 
