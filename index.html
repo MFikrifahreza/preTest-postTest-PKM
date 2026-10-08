@@ -1977,6 +1977,53 @@ body:not(.wide) #notice .note {
     transition-duration: .01ms !important;
   }
 }
+
+/* ===== VERSI HP LEBIH RINGKAS (siswa) ===== */
+@media (max-width: 560px) {
+  body:not(.wide) main:not(:has(#quiz:not(.hidden))) {
+    justify-content: flex-start;
+    padding: 18px 14px 24px;
+  }
+  body:not(.wide) main:has(#quiz:not(.hidden)) {
+    padding: 12px 12px 20px;
+  }
+
+  /* hero */
+  body:not(.wide) .hero { margin-bottom: 14px; }
+  body:not(.wide) .lock {
+    width: 56px; height: 56px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+  }
+  body:not(.wide) .lock svg { width: 26px; height: 26px; }
+  body:not(.wide) h1 { font-size: 1.5rem; }
+  body:not(.wide) .hero .sub { font-size: .8rem; }
+
+  /* kartu kode */
+  body:not(.wide) #idCard { padding: 14px; border-radius: 22px; }
+  body:not(.wide) #idCard input { min-height: 44px; }
+  #kode { font-size: 1.05rem; }
+
+  /* kartu Pre-Test / Post-Test */
+  body:not(.wide) .tcard {
+    grid-template-columns: 44px 1fr;
+    gap: 8px 12px;
+    padding: 14px;
+    border-radius: 22px;
+  }
+  body:not(.wide) .tcard .ti { width: 44px; height: 44px; border-radius: 15px; }
+  body:not(.wide) .tcard .ti svg { width: 22px; height: 22px; }
+  body:not(.wide) .tcard h2 { font-size: 1rem; }
+  body:not(.wide) .tcard p { font-size: .78rem; }
+  body:not(.wide) .tcard button { min-height: 42px; font-size: .85rem; }
+
+  /* saat mengerjakan soal */
+  .qcard { padding: 16px 14px; border-radius: 24px; }
+  .qt { font-size: .95rem; }
+  .opt { padding: 10px 12px; font-size: .85rem; gap: 10px; }
+  .opt .l { width: 26px; height: 26px; }
+  .nav button { min-height: 44px; font-size: .88rem; }
+}
 </style>
 </head>
 
