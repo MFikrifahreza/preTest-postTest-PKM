@@ -1414,6 +1414,30 @@ body.wide .ht .sub {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+/* ---------- rapikan halaman Podium ---------- */
+#p_pd .row {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+}
+
+#p_pd .bar2 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+}
+
+#p_pd .bar2 select {
+  width: 100%;
+  min-width: 0;
+}
+
+@media (max-width: 560px) {
+  #p_pd .bar2 {
+    grid-template-columns: 1fr;
+  }
+}
 
 
 /* =====================================================
@@ -1836,9 +1860,9 @@ body:not(.wide) #notice .note {
   .tcard,
   body:not(.wide) .tcard {
     display: grid;
-    grid-template-columns: 52px 1fr;
-      grid-template-areas: "ti tb bt";
-    align-items: start;
+    grid-template-columns: 52px 1fr auto;
+    grid-template-areas: "ti tb bt";
+    align-items: center;
     gap: 10px 12px;
   }
 
@@ -2024,7 +2048,6 @@ body:not(.wide) #notice .note {
   .opt > span:last-child { padding-top: 0; }
   .opt .l { width: 26px; height: 26px; }
 
-  /* tombol navigasi menempel di bawah layar */
     /* tombol navigasi menempel di bawah layar */
   #quiz > .nav {
     position: sticky;
@@ -2271,6 +2294,46 @@ html[data-theme="dark"] tr.rw:hover td { background: rgba(238, 125, 104, .22); }
 html[data-theme="dark"] tr.rw.on td { background: rgba(238, 125, 104, .4); }
 html[data-theme="dark"] .scroll::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, .25); }
 
+/* =====================================================
+   SCROLLBAR HALUS (semua halaman)
+===================================================== */
+@supports not selector(::-webkit-scrollbar) {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(120, 95, 190, .5) transparent;
+  }
+}
+
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: 99px;
+  background: rgba(120, 95, 190, .5);
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(238, 125, 104, .8);
+  background-clip: padding-box;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  html[data-theme="dark"] {
+    scrollbar-color: rgba(255, 255, 255, .3) transparent;
+  }
+}
+
+html[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, .3);
+  background-clip: padding-box;
+}
+
+html[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(238, 125, 104, .85);
+  background-clip: padding-box;
+}
 
 /* =====================================================
    18. KURANGI GERAKAN
@@ -2505,7 +2568,7 @@ const ICON = {
     function studentView() {
       app$.innerHTML = `
         <section class="hero">
-                    <div class="lock">${ICON.shield}</div>
+          <div class="lock">${ICON.shield}</div>
           <h1>Literasi Digital</h1>
           <p class="sub">Masukkan kode yang di berikan oleh admin, lalu kerjakan tes yang sedang dibuka Admin.</p>
         </section>
