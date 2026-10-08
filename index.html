@@ -2024,6 +2024,25 @@ body:not(.wide) #notice .note {
   .opt .l { width: 26px; height: 26px; }
   .nav button { min-height: 44px; font-size: .88rem; }
 }
+
+/* ===== CEGAH SCROLL BERLEBIH DI HP (siswa) ===== */
+body:not(.wide) {
+  min-height: 100vh;   /* cadangan browser lama */
+  min-height: 100dvh;
+}
+
+body:not(.wide) main:not(:has(#quiz:not(.hidden))) {
+  min-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  min-height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+}
+
+@media (max-width: 560px) {
+  body:not(.wide) main:not(:has(#quiz:not(.hidden))) {
+    justify-content: center;   /* konten di tengah, tidak menempel atas */
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+}
 </style>
 </head>
 
@@ -2247,7 +2266,7 @@ body:not(.wide) #notice .note {
         <section class="hero">
           <div class="lock">${ICON.lock}</div>
           <h1>Literasi Digital</h1>
-          <p class="sub"> yang di berikan oleh admin, lalu kerjakan tes yang sedang dibuka Admin.</p>
+          <p class="sub">Masukkan kode yang di berikan oleh admin, lalu kerjakan tes yang sedang dibuka Admin.</p>
         </section>
 
         <div class="panel" id="idCard">
